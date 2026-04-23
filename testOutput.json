@@ -1,0 +1,83 @@
+{
+  "Monday": [
+    {
+      "subjectCode": "CS302",
+      "staffName": "Dr Ravi"
+    },
+    {
+      "subjectCode": "CS302",
+      "staffName": "Dr Ravi"
+    },
+    {
+      "subjectCode": "CS301",
+      "staffName": "Dr Ravi"
+    },
+    {
+      "subjectCode": "CS301",
+      "staffName": "Dr Ravi"
+    },
+    {
+      "subjectCode": "CS303",
+      "staffName": "Prof Kumar"
+    },
+    {
+      "subjectCode": "CS303",
+      "staffName": "Prof Kumar"
+    },
+    null
+  ],
+  "Tuesday": [
+    {
+      "subjectCode": "CS301",
+      "staffName": "Dr Ravi"
+    },
+    {
+      "subjectCode": "CS301",
+      "staffName": "Dr Ravi"
+    },
+    {
+      "subjectCode": "CS302",
+      "staffName": "Dr Ravi"
+    },
+    {
+      "subjectCode": "CS303",
+      "staffName": "Prof Kumar"
+    },
+    {
+      "subjectCode": "CS303",
+      "staffName": "Prof Kumar"
+    },
+    null,
+    null
+  ],
+  "Wednesday": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "Thursday": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "Friday": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    {
+      "subjectCode": "NM",
+      "staffName": "Special"
+    },
+    null
+  ]
+}

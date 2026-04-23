@@ -1,0 +1,5 @@
+{
+  "name": "College Timetable Scheduler",
+  "description": "An automated timetable generation system for college departments using constraint-solving algorithms.",
+  "requestFramePermissions": []
+}
