@@ -71,21 +71,21 @@ export default function StaffManagement() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">Staff Management</h1>
-          <p className="text-slate-500">Add and manage department faculty members.</p>
+          <p className="text-slate-500 mt-1 sm:mt-0">Add and manage department faculty members.</p>
         </div>
         <button 
           onClick={() => setModalOpen(true)}
-          className="bg-indigo-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-indigo-700 transition-colors"
+          className="w-full sm:w-auto bg-indigo-600 text-white px-4 py-2 rounded-lg flex items-center justify-center space-x-2 hover:bg-indigo-700 transition-colors"
         >
           <Plus size={20} />
           <span>Add Staff</span>
         </button>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden overflow-x-auto w-full">
         <table className="w-full text-left">
           <thead className="bg-slate-50 border-bottom border-slate-100">
             <tr>
@@ -168,7 +168,7 @@ export default function StaffManagement() {
                   onChange={e => setFormData({...formData, name: e.target.value})}
                 />
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1">Max Hours/Week</label>
                   <input 
@@ -192,7 +192,7 @@ export default function StaffManagement() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">Subjects Handled</label>
-                <div className="grid grid-cols-2 gap-2 max-h-40 overflow-y-auto p-2 border border-slate-100 rounded-lg">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-40 overflow-y-auto p-2 border border-slate-100 rounded-lg">
                   {subjects.map(sub => (
                     <button
                       key={sub.code}

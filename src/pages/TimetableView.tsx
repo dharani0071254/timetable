@@ -388,7 +388,7 @@ export default function TimetableView() {
           <p className="text-slate-500">View and export generated schedules.</p>
         </div>
         
-        <div className="flex items-center space-x-1 bg-white p-1 rounded-xl border border-slate-200 shadow-sm">
+        <div className="flex flex-wrap items-center justify-center gap-1 bg-white p-1 rounded-xl border border-slate-200 shadow-sm">
           <button 
             onClick={() => { setViewMode('class'); setCurrentIndex(0); }}
             className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${viewMode === 'class' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:text-slate-700'}`}
@@ -418,9 +418,9 @@ export default function TimetableView() {
       )}
 
       {viewMode !== 'day' && (
-      <div className="bg-white/80 backdrop-blur-xl p-8 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-200/60 space-y-8 animate-slide-up delay-150">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
+      <div className="bg-white/80 backdrop-blur-xl p-4 sm:p-8 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-200/60 space-y-8 animate-slide-up delay-150 overflow-hidden w-full">
+        <div className="flex flex-col sm:flex-row items-center justify-between">
+          <div className="flex items-center justify-between w-full sm:w-auto">
             <button 
               onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
               disabled={currentIndex === 0}
@@ -428,7 +428,7 @@ export default function TimetableView() {
             >
               <ChevronLeft size={20} />
             </button>
-            <h2 className="text-xl font-bold text-slate-900 min-w-[120px] text-center">
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 min-w-[80px] sm:min-w-[120px] text-center truncate px-2">
               {current?.classId || "N/A"}
             </h2>
             <button 
@@ -440,7 +440,7 @@ export default function TimetableView() {
             </button>
           </div>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-wrap items-center justify-end gap-2 mt-4 sm:mt-0">
             {viewMode === 'class' && (
               <button 
                 onClick={() => setIsEditMode(!isEditMode)} 
@@ -464,8 +464,8 @@ export default function TimetableView() {
           </div>
         </div>
 
-        <div className="overflow-x-auto border border-slate-200/60 rounded-2xl shadow-sm bg-white/50">
-          <table className="w-full border-collapse text-sm">
+        <div className="overflow-x-auto border border-slate-200/60 rounded-2xl shadow-sm bg-white/50 w-full" style={{ WebkitOverflowScrolling: 'touch' }}>
+          <table className="w-full border-collapse text-sm min-w-[800px]">
             <thead>
               <tr className="bg-slate-50">
                 <th className="border border-slate-200/60 p-4 text-slate-700 font-bold w-32">Day</th>

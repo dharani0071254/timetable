@@ -112,11 +112,11 @@ export default function RulesConfig() {
         </div>
       </div>
 
-      <div className="flex justify-end">
+      <div className="flex w-full justify-end">
         <button 
           onClick={handleSave}
           disabled={saving}
-          className="bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold flex items-center space-x-2 hover:bg-indigo-700 transition-all disabled:opacity-50 shadow-lg shadow-indigo-900/20"
+          className="w-full md:w-auto bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold flex items-center justify-center space-x-2 hover:bg-indigo-700 transition-all disabled:opacity-50 shadow-lg shadow-indigo-900/20"
         >
           <Save size={20} />
           <span>{saving ? 'Saving...' : 'Save Configuration'}</span>

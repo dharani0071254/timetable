@@ -191,9 +191,9 @@ export default function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 animate-slide-up delay-200">
-        <div className="bg-white/80 backdrop-blur-xl p-8 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-200/60 hover:shadow-xl transition-all">
+        <div className="bg-white/80 backdrop-blur-xl p-6 sm:p-8 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-200/60 hover:shadow-xl transition-all">
           <h2 className="text-xl font-bold text-slate-800 mb-6 tracking-tight">Quick Actions</h2>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <QuickActionLink to="/staff" label="Add Staff" color="blue" />
             <QuickActionLink to="/subjects" label="Add Subject" color="emerald" />
             <QuickActionLink to="/classes" label="Manage Classes" color="amber" />
@@ -212,7 +212,7 @@ export default function Dashboard() {
           </button>
         </div>
 
-        <div className="bg-white/80 backdrop-blur-xl p-8 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-200/60 hover:shadow-xl transition-all">
+        <div className="bg-white/80 backdrop-blur-xl p-6 sm:p-8 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-200/60 hover:shadow-xl transition-all">
           <h2 className="text-xl font-bold text-slate-800 mb-6 tracking-tight">System Status</h2>
           <div className="space-y-4">
             <StatusItem label="Database Connection" status="Connected" color="emerald" />

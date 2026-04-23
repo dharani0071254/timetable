@@ -47,7 +47,7 @@ export default function TimetableGenerator() {
             </div>
             <button 
               onClick={handleGenerate}
-              className="bg-indigo-600 text-white px-10 py-4 rounded-2xl font-bold text-lg hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-900/20 active:scale-95"
+              className="w-full sm:w-auto bg-indigo-600 text-white px-10 py-4 rounded-2xl font-bold text-lg hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-900/20 active:scale-95"
             >
               Start Generation Engine
             </button>
@@ -80,16 +80,16 @@ export default function TimetableGenerator() {
               <h3 className="text-2xl font-bold text-slate-900">Success!</h3>
               <p className="text-slate-600">{message}</p>
             </div>
-            <div className="flex justify-center space-x-4">
+            <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
               <button 
                 onClick={() => setStatus('idle')}
-                className="px-6 py-3 border border-slate-200 rounded-xl font-semibold text-slate-600 hover:bg-slate-50 transition-colors"
+                className="w-full sm:w-auto px-6 py-3 border border-slate-200 rounded-xl font-semibold text-slate-600 hover:bg-slate-50 transition-colors"
               >
                 Generate Again
               </button>
               <a 
                 href="/viewer"
-                className="px-6 py-3 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition-colors"
+                className="w-full sm:w-auto px-6 py-3 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition-colors text-center"
               >
                 View Timetables
               </a>

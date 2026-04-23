@@ -72,13 +72,20 @@ function AppContent() {
   return (
     <Router>
       <div className="min-h-screen bg-slate-50 flex">
-        <aside className={`${isSidebarOpen ? 'w-64' : 'w-20'} bg-slate-950 text-slate-300 border-r border-slate-800/50 transition-all duration-300 flex flex-col fixed h-full z-50 shadow-2xl`}>
+        {/* Mobile Backdrop */}
+        {isSidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[90] md:hidden animate-fade-in"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
+        <aside className={`${isSidebarOpen ? 'translate-x-0 w-64' : '-translate-x-full md:translate-x-0 md:w-20'} bg-slate-950 text-slate-300 border-r border-slate-800/50 transition-all duration-300 flex flex-col fixed inset-y-0 left-0 h-full z-[100] shadow-2xl`}>
           <div className="p-6 flex items-center justify-between">
-            <div className={`flex items-center space-x-3 ${!isSidebarOpen && 'justify-center w-full'}`}>
+            <div className={`flex items-center space-x-3 ${!isSidebarOpen && 'md:justify-center w-full'}`}>
               <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg flex-shrink-0 shadow-lg shadow-indigo-500/30">
                 P
               </div>
-              <h1 className={`font-bold text-xl tracking-tight text-white ${!isSidebarOpen && 'hidden'}`}>ProScheduler</h1>
+              <h1 className={`font-bold text-xl tracking-tight text-white ${!isSidebarOpen && 'md:hidden'}`}>ProScheduler</h1>
             </div>
             {isSidebarOpen && (
               <button onClick={() => setSidebarOpen(false)} className="p-1 hover:bg-slate-800 rounded text-slate-400 hover:text-white transition-colors">
@@ -87,7 +94,7 @@ function AppContent() {
             )}
           </div>
           {!isSidebarOpen && (
-            <div className="flex justify-center mb-6">
+            <div className="hidden md:flex justify-center mb-6">
               <button onClick={() => setSidebarOpen(true)} className="p-2 hover:bg-slate-800 rounded text-slate-400 hover:text-white transition-colors">
                 <Menu size={20} />
               </button>
@@ -95,7 +102,7 @@ function AppContent() {
           )}
 
           {/* Department Selector */}
-          <div className={`px-4 mb-4 ${!isSidebarOpen && 'hidden'}`}>
+          <div className={`px-4 mb-4 ${!isSidebarOpen && 'md:hidden'}`}>
             <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Department / Config</label>
             <div className="space-y-2">
               <select 
@@ -130,14 +137,14 @@ function AppContent() {
             </div>
           </div>
 
-          <nav className="flex-1 px-4 space-y-2 mt-4">
-            <NavItem to="/" icon={<LayoutDashboard size={20} />} label="Dashboard" isOpen={isSidebarOpen} disabled={!selectedDepartment} />
-            <NavItem to="/staff" icon={<Users size={20} />} label="Staff" isOpen={isSidebarOpen} disabled={!selectedDepartment} />
-            <NavItem to="/subjects" icon={<BookOpen size={20} />} label="Subjects" isOpen={isSidebarOpen} disabled={!selectedDepartment} />
-            <NavItem to="/classes" icon={<School size={20} />} label="Classes" isOpen={isSidebarOpen} disabled={!selectedDepartment} />
-            <NavItem to="/rules" icon={<Settings size={20} />} label="Rules" isOpen={isSidebarOpen} disabled={!selectedDepartment} />
-            <NavItem to="/generator" icon={<Cpu size={20} />} label="Generator" isOpen={isSidebarOpen} disabled={!selectedDepartment} />
-            <NavItem to="/viewer" icon={<Calendar size={20} />} label="Viewer" isOpen={isSidebarOpen} disabled={!selectedDepartment} />
+          <nav className="flex-1 px-4 space-y-2 mt-4 overflow-y-auto">
+            <NavItem onClick={() => window.innerWidth < 768 && setSidebarOpen(false)} to="/" icon={<LayoutDashboard size={20} />} label="Dashboard" isOpen={isSidebarOpen} disabled={!selectedDepartment} />
+            <NavItem onClick={() => window.innerWidth < 768 && setSidebarOpen(false)} to="/staff" icon={<Users size={20} />} label="Staff" isOpen={isSidebarOpen} disabled={!selectedDepartment} />
+            <NavItem onClick={() => window.innerWidth < 768 && setSidebarOpen(false)} to="/subjects" icon={<BookOpen size={20} />} label="Subjects" isOpen={isSidebarOpen} disabled={!selectedDepartment} />
+            <NavItem onClick={() => window.innerWidth < 768 && setSidebarOpen(false)} to="/classes" icon={<School size={20} />} label="Classes" isOpen={isSidebarOpen} disabled={!selectedDepartment} />
+            <NavItem onClick={() => window.innerWidth < 768 && setSidebarOpen(false)} to="/rules" icon={<Settings size={20} />} label="Rules" isOpen={isSidebarOpen} disabled={!selectedDepartment} />
+            <NavItem onClick={() => window.innerWidth < 768 && setSidebarOpen(false)} to="/generator" icon={<Cpu size={20} />} label="Generator" isOpen={isSidebarOpen} disabled={!selectedDepartment} />
+            <NavItem onClick={() => window.innerWidth < 768 && setSidebarOpen(false)} to="/viewer" icon={<Calendar size={20} />} label="Viewer" isOpen={isSidebarOpen} disabled={!selectedDepartment} />
           </nav>
 
           <div className="p-4 border-t border-slate-800">
@@ -146,21 +153,34 @@ function AppContent() {
               className="flex items-center space-x-3 px-4 py-3 w-full text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
             >
               <LogOut size={20} />
-              {isSidebarOpen && <span>Logout</span>}
+              {(isSidebarOpen || window.innerWidth < 768) && <span>Logout</span>}
             </button>
           </div>
         </aside>
 
         {/* Main Content */}
-        <main className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-20'} p-8 bg-slate-50/50 relative overflow-x-hidden min-h-screen`}>
+        <main className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'md:ml-64' : 'md:ml-20'} p-4 md:p-8 bg-slate-50/50 relative overflow-x-hidden min-h-screen`}>
+          {/* Mobile Header */}
+          <div className="md:hidden flex items-center justify-between mb-6 pb-4 border-b border-slate-200">
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-indigo-500/30">
+                P
+              </div>
+              <h1 className="font-bold text-xl tracking-tight text-slate-900">ProScheduler</h1>
+            </div>
+            <button onClick={() => setSidebarOpen(true)} className="p-2 bg-white border border-slate-200 shadow-sm rounded-lg text-slate-600 hover:bg-slate-50 transition-colors">
+              <Menu size={20} />
+            </button>
+          </div>
+
           {/* Decorative background blob */}
           <div className="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 animate-fade-in">
             {!selectedDepartment ? (
-              <div className="h-full flex flex-col items-center justify-center text-center space-y-4 pt-20">
-                <div className="p-10 bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 max-w-md animate-slide-up text-center">
+              <div className="h-full flex flex-col items-center justify-center text-center space-y-4 pt-10 md:pt-20">
+                <div className="p-6 md:p-10 bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 max-w-md w-full animate-slide-up text-center mx-4 md:mx-0">
                   <div className="w-20 h-20 bg-indigo-50 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-inner">
                     <School size={40} className="text-indigo-600" />
                   </div>
@@ -235,12 +255,12 @@ export default function App() {
   );
 }
 
-function NavItem({ to, icon, label, isOpen, disabled }: { to: string, icon: any, label: string, isOpen: boolean, disabled?: boolean }) {
+function NavItem({ to, icon, label, isOpen, disabled, onClick }: { to: string, icon: any, label: string, isOpen: boolean, disabled?: boolean, onClick?: () => void }) {
   if (disabled) {
     return (
       <div className="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-600 cursor-not-allowed opacity-50">
         {icon}
-        {isOpen && <span className="font-medium">{label}</span>}
+        {(isOpen || window.innerWidth < 768) && <span className="font-medium">{label}</span>}
       </div>
     );
   }
@@ -248,6 +268,7 @@ function NavItem({ to, icon, label, isOpen, disabled }: { to: string, icon: any,
   return (
     <NavLink 
       to={to} 
+      onClick={onClick}
       className={({ isActive }) => `
         group relative flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300
         ${isActive ? 'bg-indigo-500/10' : 'hover:bg-slate-800/50'}
@@ -259,7 +280,7 @@ function NavItem({ to, icon, label, isOpen, disabled }: { to: string, icon: any,
           <span className={`${isActive ? 'text-indigo-400' : 'text-slate-400 group-hover:text-white'} transition-colors duration-300`}>
             {icon}
           </span>
-          {isOpen && <span className={`font-medium tracking-wide ${isActive ? 'text-indigo-100' : 'text-slate-300 group-hover:text-white'} transition-colors duration-300`}>{label}</span>}
+          {(isOpen || window.innerWidth < 768) && <span className={`font-medium tracking-wide ${isActive ? 'text-indigo-100' : 'text-slate-300 group-hover:text-white'} transition-colors duration-300`}>{label}</span>}
         </>
       )}
     </NavLink>

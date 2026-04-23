@@ -121,21 +121,21 @@ export default function ClassManagement() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">Class Management</h1>
-          <p className="text-slate-500">Define sections and assign subjects to them.</p>
+          <p className="text-slate-500 mt-1 sm:mt-0">Define sections and assign subjects to them.</p>
         </div>
         <button
           onClick={openAdd}
-          className="bg-indigo-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-indigo-700 transition-colors"
+          className="w-full sm:w-auto bg-indigo-600 text-white px-4 py-2 rounded-lg flex items-center justify-center space-x-2 hover:bg-indigo-700 transition-colors"
         >
           <Plus size={20} />
           <span>Add Class</span>
         </button>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden overflow-x-auto w-full">
         <table className="w-full text-left">
           <thead className="bg-slate-50 border-b border-slate-100">
             <tr>
@@ -204,7 +204,7 @@ export default function ClassManagement() {
               {editingClass ? `Edit Class — ${editingClass.name}` : "Add New Class"}
             </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1">Class Name</label>
                   <input
@@ -264,8 +264,8 @@ export default function ClassManagement() {
                             {isSelected && <Check size={16} className="text-indigo-600" />}
                           </button>
                           {isSelected && (
-                            <div className="p-3 bg-indigo-50/30 border-t border-indigo-50 flex items-end justify-between space-x-3">
-                              <div className="flex-1">
+                            <div className="p-3 bg-indigo-50/30 border-t border-indigo-50 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                              <div className="w-full">
                                 <label className="block text-[10px] font-bold text-slate-500 uppercase">
                                   Fixed Day
                                 </label>
@@ -284,7 +284,7 @@ export default function ClassManagement() {
                                   <option value="Friday">Friday</option>
                                 </select>
                               </div>
-                              <div className="w-20">
+                              <div className="w-full">
                                 <label className="block text-[10px] font-bold text-slate-500 uppercase">
                                   Start P.
                                 </label>
@@ -304,7 +304,7 @@ export default function ClassManagement() {
                                   disabled={!fixedTiming?.day}
                                 />
                               </div>
-                              <div className="w-20">
+                              <div className="w-full">
                                 <label className="block text-[10px] font-bold text-slate-500 uppercase">
                                   Hours
                                 </label>
